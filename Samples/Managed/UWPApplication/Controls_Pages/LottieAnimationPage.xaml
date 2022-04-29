@@ -21,7 +21,7 @@
                 x:Name="LottiePlayer"
                 Width="200"
                 Height="400"
-                AutoPlay="False">
+                AutoPlay="True">
                 <muxc:AnimatedVisualPlayer.FallbackContent>
                     <DataTemplate>
                         <TextBlock
@@ -30,6 +30,7 @@
                             Text="Nope" />
                     </DataTemplate>
                 </muxc:AnimatedVisualPlayer.FallbackContent>
+                <lottie:LottieVisualSource x:Name="LottieJsonSource" UriSource="ms-appx:///Assets/LottieLogo1.json" />
             </muxc:AnimatedVisualPlayer>
         </Border>
 

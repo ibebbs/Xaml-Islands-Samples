@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,29 +28,25 @@ namespace Samples.ManagedUWP
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //var assembly = this.GetType().Assembly;
+            var resourceContext = new Windows.ApplicationModel.Resources.Core.ResourceContext(); // not using ResourceContext.GetForCurrentView 
+            var namedResource = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap[@"Files/Assets/LottieLogo1.json"];
+            var resourceCandidate = namedResource.Resolve(resourceContext);
+            var lottieFileStream = await resourceCandidate.GetValueAsStreamAsync();
 
-            //foreach (string name in assembly.GetManifestResourceNames())
-            //{
-            //    System.Diagnostics.Debug.WriteLine(name);
-            //}
+            // Debug code just to confirm resource is being loaded correctly
+            //var inputStream = lottieFileStream.GetInputStreamAt(0);
+            //var stream = inputStream.AsStreamForRead();
+            //var reader = new StreamReader(stream);
+            //string text = reader.ReadToEnd();
 
-            var jsonString = string.Empty;
+            var source = new LottieVisualSource();
 
-            using (var stream = File.OpenRead(@"Assets\LottieLogo1.json"))
-            {
-                using (var reader = new StreamReader(stream))
-                {
-                    jsonString = reader.ReadToEnd();
-                }
-            }
-
-            var source = LottieVisualSource.CreateFromString(jsonString);
+            await source.SetSourceAsync(lottieFileStream);
 
             LottiePlayer.Source = source;
-            _ = LottiePlayer.PlayAsync(0, 1, true);
+            await LottiePlayer.PlayAsync(0, 1, true);
         }
     }
 }
