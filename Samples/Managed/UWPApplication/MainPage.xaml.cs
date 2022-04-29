@@ -37,6 +37,9 @@ namespace Samples.ManagedUWP
                     case "WelcomePage":
                         pageType = typeof(WelcomePage);
                         break;
+                    case "Lottie":
+                        pageType = typeof(LottieAnimationPage);
+                        break;
                     case "BasicInputPage":
                         pageType = typeof(BasicInputPage);
                         break;

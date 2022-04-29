@@ -161,6 +161,9 @@
     <Compile Include="Controls_Pages\AnimationsCardPage.xaml.cs">
       <DependentUpon>AnimationsCardPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls_Pages\LottieAnimationPage.xaml.cs">
+      <DependentUpon>LottieAnimationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls_Pages\AnimationsPage.xaml.cs">
       <DependentUpon>AnimationsPage.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls_Pages\LottieAnimationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls_Pages\AnimationsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -312,6 +319,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Lottie">
+      <Version>7.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Win32.UI.XamlApplication">
       <Version>6.1.2</Version>
     </PackageReference>
@@ -330,15 +340,16 @@
       <Project>{c3969d6c-706f-4aec-93a2-bf9d3c9c459c}</Project>
       <Name>Native_SwapChainPanel_Comp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UILibrary\UILibrary.csproj">
-      <Project>{2d221641-373c-4532-8bce-d9e251e123e3}</Project>
-      <Name>UILibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\LottieLogo1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
